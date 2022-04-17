@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint lib",
     "lint:fix": "eslint lib --fix"
   },
@@ -19,6 +19,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-fileupload": "^1.3.1",
+    "jest": "^27.5.1",
     "piscina": "^3.2.0",
     "recursive-readdir": "^2.2.2"
   },
