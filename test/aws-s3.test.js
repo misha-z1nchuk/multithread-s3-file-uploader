@@ -6,24 +6,27 @@ const AwsUploadFile = require('../lib/CloudStorages/AWS_S3');
 
 const testUploadFolderName = path.join(__dirname, 'fileToUploadTest');
 
-beforeAll(() => {
-    fs.mkdir(testUploadFolderName, (err) => {
-        expect(err).toBe(null);
-    });
-    fs.appendFile(path.join(testUploadFolderName, 'someFile1.txt'), 'someData', (err) => {
-        expect(err).toBe(null);
-    });
-    fs.appendFile(path.join(testUploadFolderName, 'someFile2.txt'), 'someData', (err) => {
-        expect(err).toBe(null);
-    });
-    fs.appendFile(path.join(testUploadFolderName, 'someFile3.txt'), 'someData', (err) => {
-        expect(err).toBe(null);
-    });
 
-    jest.setTimeout(10000);
-});
 
 describe('S3 testing', () => {
+    beforeAll( () => {
+        fs.mkdir(testUploadFolderName, (err) => {
+            expect(err).toBe(null);
+        });
+        fs.appendFile(path.join(testUploadFolderName, 'someFile1.txt'), 'someData', (err) => {
+            expect(err).toBe(null);
+        });
+        fs.appendFile(path.join(testUploadFolderName, 'someFile2.txt'), 'someData', (err) => {
+            expect(err).toBe(null);
+        });
+        fs.appendFile(path.join(testUploadFolderName, 'someFile3.txt'), 'someData', (err) => {
+            expect(err).toBe(null);
+        });
+
+        jest.setTimeout(10000);
+    });
+
+
     test('S3 wrong file path', async () => {
         try {
             await AwsUploadFile(
@@ -50,10 +53,13 @@ describe('S3 testing', () => {
             expect(e).toBe(null);
         }
     });
-});
 
-afterAll(() => {
-    fs.rmdir(testUploadFolderName, { recursive: true }, (err) => {
-        expect(err).toBe(null);
+
+    afterAll(async () => {
+        await fs.rmdir(testUploadFolderName, {recursive: true}, (err) => {
+            expect(err).toBe(null);
+        });
     });
 });
+
+
