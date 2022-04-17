@@ -39,5 +39,5 @@ Add folder that you want to upload to root folder of project
 And run
 
 ```bash
-    node lib/main.js -f <file name>
+    node lib/main.js -f ../<folder name>
 ```
